@@ -1,27 +1,35 @@
-from character import Character
-from character_creation import distribute_attributes, distribute_skills, get_bio
+from character.character import Character
+from character.creation import get_name, get_race, get_class, allocate_attributes, allocate_skills
 
+def create_character():
 
-def main():
-    print("===== Welcome to the DnD Habit Tracker ======")
     print("Let's create your character first...")
 
-    name, player_race, player_class = get_bio()
-    body, mind, social = distribute_attributes(5)
-    skills = distribute_skills(mind)
+    char_name = get_name()
+    char_race = get_race()
+    char_class = get_class()
+    char_body, char_mind, char_social = allocate_attributes(5)
+    skills = allocate_skills(level=1, mind = char_mind)
+
 
     player = Character(
-        name=name,
-        char_class=player_class,
-        race=player_race,
-        body=body,
-        mind=mind,
-        social=social,
+        name=char_name,
+        char_class= char_class,
+        race=char_race,
+        body=char_body,
+        mind=char_mind,
+        social=char_social,
         discipline=0,
         skills=skills,
     )
+    print(player.skills)
+    return player
 
-    print(player)
+def main():
+    print("===== Welcome to the DnD Habit Tracker ======")
+
+    character = create_character()
+    print(character)
 
 if __name__ == '__main__':
     main()
