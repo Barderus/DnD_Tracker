@@ -12,3 +12,6 @@ env/
 
 # Local Python version file
 .python-version
+
+# Local reference docs
+docs/
